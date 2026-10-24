@@ -192,6 +192,7 @@ a {
 
 .brand {
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
   gap: 12px;
   user-select: none;
@@ -233,6 +234,7 @@ a {
 
 .topbar-actions {
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   gap: 8px;
 }
@@ -305,6 +307,7 @@ a {
   letter-spacing: 0.02em;
   line-height: 1;
   text-decoration: none;
+  white-space: nowrap;
   transition:
     border-color 180ms ease,
     background-color 180ms ease,
@@ -1279,6 +1282,226 @@ a {
   font-size: 0.63rem;
 }
 
+/* ---------- 对局历史弹窗 ---------- */
+
+.modal--history {
+  width: min(720px, calc(100vw - 32px));
+}
+
+.round-history-summary {
+  margin: 18px 0 0;
+  padding: 11px 13px;
+  border: 1px solid rgba(242, 198, 109, 0.15);
+  border-radius: 10px;
+  background: rgba(242, 198, 109, 0.045);
+  color: #cdb98f;
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+.round-history-empty {
+  margin: 20px 0 0;
+  padding: 28px 16px;
+  border: 1px dashed rgba(225, 233, 243, 0.12);
+  border-radius: 12px;
+  color: var(--subtle);
+  font-size: 0.76rem;
+  line-height: 1.7;
+  text-align: center;
+}
+
+.round-history-list {
+  display: grid;
+  max-height: 45vh;
+  gap: 9px;
+  margin: 16px 0 0;
+  padding: 0 5px 0 0;
+  overflow-y: auto;
+  list-style: none;
+  scrollbar-color: rgba(242, 198, 109, 0.22) transparent;
+  scrollbar-width: thin;
+}
+
+.round-history-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.round-history-list::-webkit-scrollbar-thumb {
+  border-radius: 99px;
+  background: rgba(242, 198, 109, 0.2);
+}
+
+.round-history-entry {
+  padding: 13px 14px;
+  border: 1px solid rgba(225, 233, 243, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.round-history-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.round-result {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 2px 8px;
+  border: 1px solid rgba(225, 233, 243, 0.1);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+.round-result.is-won {
+  border-color: rgba(111, 219, 185, 0.25);
+  background: rgba(111, 219, 185, 0.06);
+  color: #8fdcc6;
+}
+
+.round-result.is-lost {
+  border-color: rgba(255, 145, 136, 0.22);
+  background: rgba(255, 145, 136, 0.05);
+  color: #e5a09a;
+}
+
+.round-history-time {
+  margin-left: auto;
+  color: var(--subtle);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.round-history-main {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 8px;
+}
+
+.round-history-answer {
+  color: #f0e5d0;
+  font-family: var(--font-mono);
+  font-size: 1.3rem;
+  letter-spacing: 0.18em;
+  line-height: 1.2;
+}
+
+.round-history-meta {
+  color: var(--muted);
+  font-size: 0.66rem;
+  line-height: 1.55;
+}
+
+.round-history-details {
+  margin-top: 9px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(225, 233, 243, 0.06);
+}
+
+.round-history-details summary {
+  width: fit-content;
+  color: #bda16c;
+  font-size: 0.67rem;
+  line-height: 1.6;
+  cursor: pointer;
+  list-style-position: inside;
+}
+
+.round-history-details[open] summary {
+  margin-bottom: 7px;
+  color: var(--gold);
+}
+
+.round-history-queries {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.round-history-query {
+  display: grid;
+  grid-template-columns: 2.2rem 3.2rem minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  min-height: 27px;
+  border-bottom: 1px solid rgba(225, 233, 243, 0.045);
+  font-size: 0.66rem;
+}
+
+.round-history-query:last-child {
+  border-bottom: 0;
+}
+
+.round-history-query-index {
+  color: var(--subtle);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+}
+
+.round-history-query-value {
+  color: #dce2e9;
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+}
+
+.round-history-query-copy {
+  overflow: hidden;
+  color: var(--muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.round-history-no-query {
+  margin: 4px 0 0;
+  color: var(--subtle);
+  font-size: 0.66rem;
+}
+
+.round-history-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(225, 233, 243, 0.08);
+}
+
+.round-history-actions .text-button {
+  align-self: center;
+}
+
+.text-button--danger {
+  border-bottom-color: rgba(255, 145, 136, 0.22);
+  color: #dc9a93;
+}
+
+.text-button--danger:hover {
+  border-color: rgba(255, 145, 136, 0.5);
+  color: #ffb2ab;
+}
+
+.text-button:disabled {
+  border-color: transparent;
+  color: var(--subtle);
+  cursor: not-allowed;
+  opacity: 0.38;
+}
+
 /* ---------- 最终提交 ---------- */
 
 .answer-panel {
@@ -2210,6 +2433,19 @@ dialog.modal--small {
     padding: 22px 19px;
   }
 
+  .round-history-list {
+    max-height: 48vh;
+    padding-right: 3px;
+  }
+
+  .round-history-time {
+    margin-left: 0;
+  }
+
+  .round-history-query {
+    grid-template-columns: 1.9rem 2.9rem minmax(0, 1fr);
+  }
+
   .modal-examples > div {
     grid-template-columns: 2.8rem 1rem 1.7rem minmax(0, 1fr);
   }
@@ -2250,6 +2486,26 @@ dialog.modal--small {
     font-size: clamp(2.2rem, 10vw, 2.55rem);
   }
 
+  .topbar {
+    gap: 8px;
+  }
+
+  .round-history-actions {
+    align-items: stretch;
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+
+  .round-history-actions .button {
+    width: 100%;
+  }
+
+  .round-history-actions .text-button {
+    align-self: stretch;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
   .difficulty-inner {
     flex-direction: column;
     align-items: flex-start;
@@ -2285,6 +2541,12 @@ dialog.modal--small {
   }
 }
 
+@media (max-width: 360px) {
+  .brand-text {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -2316,6 +2578,7 @@ dialog.modal--small {
       </div>
       <div class="topbar-actions">
         <button class="button button--quiet" type="button" data-open-rules>规则</button>
+        <button class="button button--quiet" type="button" data-open-history>历史</button>
         <button class="button button--quiet" id="new-game-top" type="button" hidden>新一局</button>
       </div>
     </header>
@@ -2613,6 +2876,41 @@ dialog.modal--small {
     </div>
   </dialog>
 
+  <!-- ============ 对局历史 ============ -->
+  <dialog class="modal modal--history" id="round-history-dialog" aria-labelledby="round-history-title">
+    <div class="modal-inner">
+      <div class="modal-topline">
+        <span>MATCH HISTORY</span>
+        <button class="icon-button" type="button" data-close-dialog="round-history-dialog" aria-label="关闭对局历史">×</button>
+      </div>
+      <p class="panel-index">历史 / HISTORY</p>
+      <h2 id="round-history-title">对局历史</h2>
+      <p class="modal-lede">这里保存已经结束的对局，最多保留最近 30 局。正在进行的本局不会出现在这里。</p>
+
+      <div class="round-history-summary" id="round-history-summary" hidden></div>
+      <p class="round-history-empty" id="round-history-empty">还没有已完成的对局。先玩一局吧。</p>
+      <ol class="round-history-list" id="round-history-list"></ol>
+
+      <div class="round-history-actions">
+        <button class="text-button text-button--danger" id="clear-history" type="button" disabled>清空历史</button>
+        <button class="button button--quiet" type="button" data-close-dialog="round-history-dialog">关闭</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ============ 清空历史确认 ============ -->
+  <dialog class="modal modal--small" id="clear-history-dialog" aria-labelledby="clear-history-title">
+    <div class="modal-inner">
+      <p class="panel-index">DELETE HISTORY</p>
+      <h2 id="clear-history-title">清空历史记录？</h2>
+      <p class="modal-lede">这只会删除已经结束对局的记录，不会影响当前正在进行或已恢复的对局。</p>
+      <div class="dialog-actions">
+        <button class="button button--quiet" id="cancel-clear-history" type="button">取消</button>
+        <button class="button button--danger" id="confirm-clear-history" type="button">清空历史</button>
+      </div>
+    </div>
+  </dialog>
+
   <!-- ============ 新局确认 ============ -->
   <dialog class="modal modal--small" id="new-game-dialog" aria-labelledby="new-game-title">
     <div class="modal-inner">
@@ -2652,6 +2950,8 @@ dialog.modal--small {
 
   const DIFFICULTIES = Object.freeze([7, 8, 9, 10, 11, 12]);
   const TOTAL_SUBMISSIONS = 3;
+  const HISTORY_VERSION = 1;
+  const HISTORY_LIMIT = 30;
   const VERSION = 1;
 
   const CANDIDATES = Object.freeze(
@@ -2984,6 +3284,134 @@ dialog.modal--small {
   }
 
   /**
+   * 历史记录的稳定标识：同一局重复写入时只保留一条。
+   */
+  function historySignature(game) {
+    return [
+      game.startedAt,
+      game.endedAt,
+      game.secret,
+      game.difficulty,
+      game.status,
+    ].join('|');
+  }
+
+  /**
+   * 标准化历史列表：只保留已结束、可验证的对局，按结束时间倒序去重截断。
+   * 传入损坏的历史数据时返回空历史，而不是让整个游戏无法启动。
+   */
+  function restoreHistory(rawValue, limit = HISTORY_LIMIT) {
+    let parsed = rawValue;
+
+    if (typeof rawValue === 'string') {
+      if (rawValue.trim() === '') {
+        return { version: HISTORY_VERSION, games: [] };
+      }
+      try {
+        parsed = JSON.parse(rawValue);
+      } catch (error) {
+        return { version: HISTORY_VERSION, games: [] };
+      }
+    }
+
+    if (
+      !isPlainObject(parsed) ||
+      parsed.version !== HISTORY_VERSION ||
+      !Array.isArray(parsed.games)
+    ) {
+      return { version: HISTORY_VERSION, games: [] };
+    }
+
+    const safeLimit =
+      Number.isInteger(limit) && limit > 0 ? limit : HISTORY_LIMIT;
+    const normalized = [];
+
+    for (const entry of parsed.games) {
+      if (!isPlainObject(entry)) {
+        continue;
+      }
+      if (!isValidTimestamp(entry.archivedAt) || !isPlainObject(entry.game)) {
+        continue;
+      }
+
+      const game = restoreGame(entry.game);
+      if (!game || !isFinished(game)) {
+        continue;
+      }
+
+      normalized.push({
+        archivedAt: entry.archivedAt,
+        game,
+      });
+    }
+
+    normalized.sort((left, right) => {
+      const endedDifference = right.game.endedAt - left.game.endedAt;
+      if (endedDifference !== 0) {
+        return endedDifference;
+      }
+      return right.archivedAt - left.archivedAt;
+    });
+
+    const seen = new Set();
+    const games = [];
+
+    for (const entry of normalized) {
+      const signature = historySignature(entry.game);
+      if (seen.has(signature)) {
+        continue;
+      }
+      seen.add(signature);
+      games.push(entry);
+      if (games.length >= safeLimit) {
+        break;
+      }
+    }
+
+    return { version: HISTORY_VERSION, games };
+  }
+
+  /**
+   * 把一局结束的对局追加进历史。活动中的对局会被忽略。
+   */
+  function appendHistory(
+    historyValue,
+    gameState,
+    archivedAt = Date.now(),
+    limit = HISTORY_LIMIT
+  ) {
+    const history = restoreHistory(historyValue, limit);
+    const game = restoreGame(gameState);
+
+    if (!game || !isFinished(game)) {
+      return history;
+    }
+
+    const safeArchivedAt = isValidTimestamp(archivedAt)
+      ? archivedAt
+      : Date.now();
+    const signature = historySignature(game);
+
+    if (history.games.some((entry) => historySignature(entry.game) === signature)) {
+      return history;
+    }
+
+    return restoreHistory(
+      {
+        version: HISTORY_VERSION,
+        games: [
+          ...history.games,
+          {
+            archivedAt: safeArchivedAt,
+            game,
+          },
+        ],
+      },
+      limit
+    );
+  }
+
+  /**
    * 从 648 个合法号码中选一个。
    * 可注入随机函数，方便测试；也可以直接传一个 0 <= n < 1 的数。
    */
@@ -3009,6 +3437,8 @@ dialog.modal--small {
   return {
     DIFFICULTIES,
     TOTAL_SUBMISSIONS,
+    HISTORY_VERSION,
+    HISTORY_LIMIT,
     CANDIDATES,
     validateNumber,
     score,
@@ -3019,6 +3449,8 @@ dialog.modal--small {
     playQuery,
     submitAnswer,
     restoreGame,
+    restoreHistory,
+    appendHistory,
     pickSecret,
   };
 });
@@ -3036,6 +3468,7 @@ dialog.modal--small {
 
   const Core = window.GameCore;
   const GAME_STORAGE_KEY = 'zero-case.game.v1';
+  const HISTORY_STORAGE_KEY = 'zero-case.history.v1';
   const PREFS_STORAGE_KEY = 'zero-case.difficulty.v1';
   const DEFAULT_DIFFICULTY = 12;
 
@@ -3089,6 +3522,15 @@ dialog.modal--small {
     newGameDialog: document.getElementById('new-game-dialog'),
     cancelNewGame: document.getElementById('cancel-new-game'),
     confirmNewGame: document.getElementById('confirm-new-game'),
+
+    roundHistoryDialog: document.getElementById('round-history-dialog'),
+    roundHistorySummary: document.getElementById('round-history-summary'),
+    roundHistoryList: document.getElementById('round-history-list'),
+    roundHistoryEmpty: document.getElementById('round-history-empty'),
+    clearHistory: document.getElementById('clear-history'),
+    clearHistoryDialog: document.getElementById('clear-history-dialog'),
+    cancelClearHistory: document.getElementById('cancel-clear-history'),
+    confirmClearHistory: document.getElementById('confirm-clear-history'),
   };
 
   let state = null;
@@ -3128,6 +3570,24 @@ dialog.modal--small {
       return;
     }
     writeStorage(GAME_STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function loadHistory() {
+    return Core.restoreHistory(readStorage(HISTORY_STORAGE_KEY));
+  }
+
+  function saveHistory(history) {
+    writeStorage(HISTORY_STORAGE_KEY, JSON.stringify(history));
+  }
+
+  function archiveFinishedGame(gameState) {
+    if (!gameState || !Core.isFinished(gameState)) {
+      return;
+    }
+
+    const history = loadHistory();
+    const updated = Core.appendHistory(history, gameState);
+    saveHistory(updated);
   }
 
   function loadPreferences() {
@@ -3346,6 +3806,140 @@ dialog.modal--small {
       items.push(buildHistoryItem(state.queries[index], index));
     }
     dom.historyList.replaceChildren(...items);
+  }
+
+  /* ---------- 跨局历史 ---------- */
+
+  function formatRoundTime(timestamp) {
+    const date = new Date(timestamp);
+    const pad = (value) => String(value).padStart(2, '0');
+    return (
+      `${date.getFullYear()}/${pad(date.getMonth() + 1)}/${pad(date.getDate())} ` +
+      `${pad(date.getHours())}:${pad(date.getMinutes())}`
+    );
+  }
+
+  function buildRoundHistoryEntry(entry) {
+    const game = entry.game;
+    const won = game.status === 'won';
+    const item = document.createElement('li');
+    item.className = 'round-history-entry';
+
+    const head = document.createElement('div');
+    head.className = 'round-history-head';
+
+    const result = document.createElement('span');
+    result.className = `round-result ${won ? 'is-won' : 'is-lost'}`;
+    result.textContent = won ? '已解开' : '未解开';
+
+    const time = document.createElement('time');
+    time.className = 'round-history-time';
+    time.dateTime = new Date(game.endedAt).toISOString();
+    time.textContent = formatRoundTime(game.endedAt);
+
+    head.append(result, time);
+
+    const main = document.createElement('div');
+    main.className = 'round-history-main';
+
+    const answer = document.createElement('span');
+    answer.className = 'round-history-answer';
+    answer.textContent = game.secret;
+    answer.setAttribute('aria-label', `答案 ${game.secret}`);
+
+    const difficulty = document.createElement('span');
+    difficulty.className = 'round-history-meta';
+    difficulty.textContent =
+      `难度 ${game.difficulty} · ${difficultyLabel(game.difficulty)}`;
+
+    const counts = document.createElement('span');
+    counts.className = 'round-history-meta';
+    counts.textContent =
+      `提问 ${game.queries.length} 次 · 提交 ${game.submissions.length} 次`;
+
+    main.append(answer, difficulty, counts);
+
+    const details = document.createElement('details');
+    details.className = 'round-history-details';
+
+    const summary = document.createElement('summary');
+    summary.textContent = `查看提问记录（${game.queries.length}）`;
+    details.append(summary);
+
+    if (game.queries.length > 0) {
+      const queryList = document.createElement('ol');
+      queryList.className = 'round-history-queries';
+
+      game.queries.forEach((query, index) => {
+        const row = document.createElement('li');
+        row.className = 'round-history-query';
+
+        const order = document.createElement('span');
+        order.className = 'round-history-query-index';
+        order.textContent = `#${String(index + 1).padStart(2, '0')}`;
+
+        const value = document.createElement('span');
+        value.className = 'round-history-query-value';
+        value.textContent = query.value;
+
+        const copy = document.createElement('span');
+        copy.className = 'round-history-query-copy';
+        copy.textContent =
+          `反馈 ${query.score} · ${scoreShortDescription(query.score)}`;
+
+        row.append(order, value, copy);
+        queryList.append(row);
+      });
+
+      details.append(queryList);
+    } else {
+      const noQuery = document.createElement('p');
+      noQuery.className = 'round-history-no-query';
+      noQuery.textContent = '本局没有提问。';
+      details.append(noQuery);
+    }
+
+    item.append(head, main, details);
+    return item;
+  }
+
+  function renderRoundHistory() {
+    const history = loadHistory();
+    const games = history.games;
+    const wins = games.filter((entry) => entry.game.status === 'won').length;
+    const losses = games.length - wins;
+
+    dom.roundHistorySummary.hidden = games.length === 0;
+    dom.roundHistoryEmpty.hidden = games.length > 0;
+    dom.clearHistory.disabled = games.length === 0;
+
+    if (games.length === 0) {
+      dom.roundHistorySummary.textContent = '';
+    } else {
+      dom.roundHistorySummary.textContent =
+        `共 ${games.length} 局 · ${wins} 胜 · ${losses} 负 · ` +
+        `最多保留最近 ${Core.HISTORY_LIMIT} 局`;
+    }
+
+    dom.roundHistoryList.replaceChildren(
+      ...games.map((entry) => buildRoundHistoryEntry(entry))
+    );
+  }
+
+  function openRoundHistory() {
+    renderRoundHistory();
+    showDialog(dom.roundHistoryDialog);
+  }
+
+  function clearRoundHistory() {
+    saveHistory(Core.restoreHistory(null));
+    closeDialog(dom.clearHistoryDialog);
+    renderRoundHistory();
+
+    const closeButton = dom.roundHistoryDialog.querySelector('.icon-button');
+    if (closeButton) {
+      closeButton.focus();
+    }
   }
 
   function renderResult() {
@@ -3579,6 +4173,10 @@ dialog.modal--small {
       button.addEventListener('click', () => showDialog(dom.rulesDialog));
     });
 
+    document.querySelectorAll('[data-open-history]').forEach((button) => {
+      button.addEventListener('click', openRoundHistory);
+    });
+
     document.querySelectorAll('[data-close-dialog]').forEach((button) => {
       button.addEventListener('click', () => {
         const id = button.getAttribute('data-close-dialog');
@@ -3587,7 +4185,12 @@ dialog.modal--small {
       });
     });
 
-    [dom.rulesDialog, dom.newGameDialog].forEach((dialog) => {
+    [
+      dom.rulesDialog,
+      dom.newGameDialog,
+      dom.roundHistoryDialog,
+      dom.clearHistoryDialog,
+    ].forEach((dialog) => {
       dialog.addEventListener('click', (event) => {
         if (event.target === dialog) {
           closeDialog(dialog);
@@ -3601,6 +4204,19 @@ dialog.modal--small {
       closeDialog(dom.newGameDialog);
       goToStart({ focus: true });
     });
+
+    dom.clearHistory.addEventListener('click', () => {
+      if (dom.clearHistory.disabled) {
+        return;
+      }
+      showDialog(dom.clearHistoryDialog);
+    });
+
+    dom.cancelClearHistory.addEventListener('click', () => {
+      closeDialog(dom.clearHistoryDialog);
+    });
+
+    dom.confirmClearHistory.addEventListener('click', clearRoundHistory);
   }
 
   function bindGameControls() {
@@ -3665,6 +4281,7 @@ dialog.modal--small {
 
       if (Core.isFinished(state)) {
         answerNotice = '';
+        archiveFinishedGame(state);
         saveGame();
         renderGame({ focusResult: true });
         return;
@@ -3719,6 +4336,9 @@ dialog.modal--small {
         selectedDifficulty = restored.difficulty;
         answerNotice = '';
         applyDifficultySelection();
+        if (Core.isFinished(state)) {
+          archiveFinishedGame(state);
+        }
         renderGame();
         return;
       }
